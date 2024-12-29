@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ClickHub product; GAME:2;CID:3;UID:541329297663852544 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор марка</title>
+</head>
+
+<body id='main'>
+    <script>const _0x375671 = _0x5787; function _0x5787(_0x24d12d, _0x32bded) { const _0x193dd0 = _0x193d(); return _0x5787 = function (_0x5787d3, _0x2b42be) { _0x5787d3 = _0x5787d3 - 0x85; let _0x4ecf71 = _0x193dd0[_0x5787d3]; return _0x4ecf71; }, _0x5787(_0x24d12d, _0x32bded); } (function (_0x673c13, _0x32aa3d) { const _0x22542c = _0x5787, _0x539da2 = _0x673c13(); while (!![]) { try { const _0x536be9 = -parseInt(_0x22542c(0x99)) / 0x1 * (parseInt(_0x22542c(0x89)) / 0x2) + parseInt(_0x22542c(0x8d)) / 0x3 + parseInt(_0x22542c(0x86)) / 0x4 * (-parseInt(_0x22542c(0x8a)) / 0x5) + parseInt(_0x22542c(0x96)) / 0x6 + parseInt(_0x22542c(0x8b)) / 0x7 + parseInt(_0x22542c(0x87)) / 0x8 * (parseInt(_0x22542c(0x88)) / 0x9) + parseInt(_0x22542c(0x91)) / 0xa * (-parseInt(_0x22542c(0x98)) / 0xb); if (_0x536be9 === _0x32aa3d) break; else _0x539da2['push'](_0x539da2['shift']()); } catch (_0x12f74b) { _0x539da2['push'](_0x539da2['shift']()); } } }(_0x193d, 0x915f3)); const element = _0x40c828 => { const _0x110233 = _0x5787; return document[_0x110233(0x90)](_0x40c828); }, random = (_0x22dbda, _0x20c7c2) => Math[_0x375671(0x92)](Math[_0x375671(0x8e)]() * (_0x20c7c2 - _0x22dbda + 0x1) + _0x22dbda), main = element(_0x375671(0x97)), output = (_0x507c61, _0xc10746 = 'p') => { const _0x23fcf4 = _0x375671, _0x187845 = document[_0x23fcf4(0x94)](_0xc10746); _0x187845[_0x23fcf4(0x8c)] = '' + _0x507c61, main[_0x23fcf4(0x95)](_0x187845); }, color = (_0x45b0ba, _0x2d19c9) => element(_0x45b0ba)[_0x375671(0x85)][_0x375671(0x93)] = _0x2d19c9, bgcolor = (_0x2c5a22, _0x2038c0) => element(_0x2c5a22)[_0x375671(0x8f)] = _0x2038c0, update = (_0x22653a, _0x4e4c32) => element(_0x22653a)[_0x375671(0x8c)] = '' + _0x4e4c32, content = _0x399b0b => { const _0x33490a = _0x375671; return element(_0x399b0b)[_0x33490a(0x8c)]; }, remove = _0x21c253 => element(_0x21c253)['remove'](), debug = _0xe592c5 => console['log'](_0xe592c5), loop = (_0x4243b4, _0x273f6a) => { return setInterval(_0x273f6a, _0x4243b4); }, stoploop = _0x2fe667 => clearInterval(_0x2fe667); function _0x193d() { const _0x556d00 = ['1693370WwhBzF', 'innerHTML', '1093470GuAbSK', 'random', 'background', 'getElementById', '896530WEfWHE', 'floor', 'color', 'createElement', 'appendChild', '3685908ChmhkU', 'main', '22SKscnk', '4206OfNznN', 'style', '8dtCFUo', '114744EfhLjD', '549swrtPb', '416cYMMla', '1115110AUeucB']; _0x193d = function () { return _0x556d00; }; return _0x193d(); }</script>
+
+    <div>
+        <h1 id="head">Симулятор марка!</h1>
+        <p id="head1">Играй в казино, получай деньги, плати налоги и постарайся не уйти в минус!</p>
+        <br>
+
+        <div id="casino">
+            <h3 id="money">Сейчас денег: 1000</h3>
+            <input type="text" id="bet">
+            <input type="button" value="Ставить" onclick="Play()">
+            <p id="result"></p>
+            <br>
+        </div>
+
+        <div id="event">
+            <h2 id="eventMain">Событие: </h2>
+            <p id="eventI">В событии расказывают нововведения ляндии и реформы Президента.</p>
+        </div>
+    </div>
+
+
+    <script>
+        let score = 1000;
+        let record = 0;
+
+        let bet = 0;
+        let pay = 100;
+
+        let maxBet = 2000;
+        let minBet = 25;
+
+        let min = -5;
+        let max = 9;
+        Play = () => {
+            let multi = random(min, max);
+            if (multi < 0) multi = 0;
+
+            bet = element("bet").value;
+            element("bet").value = "";
+
+            if (isNaN(bet) || bet == "") {
+                update("result", "Там число должно быть, дурачок.");
+                return;
+            }
+
+            if (bet < minBet || bet > maxBet) {
+                update("result", `Число не попадает по критериям оплаты: от ${minBet} до ${maxBet}.`);
+                return;
+            }
+
+            if (bet <= score) {
+                score -= bet;
+
+                update("result", `Результат, ${multi}x, вам выплатили ${(multi * bet) / 100 * pay}.`)
+                score += (multi * bet) / 100 * pay;
+
+                return;
+            }
+
+            update("result", "У тебя столько деняк нет, дебил.")
+        }
+
+        const mainLoop = loop(100, () => {
+            if (score <= 0) {
+                score = 0;
+                remove("casino");
+                remove("event");
+
+                update("head", "Так и закончилась история Марка, который любил казино.");
+                update("head1", "У вас закончились все деньги. Рестартни, чтобы начать сначала.");
+
+                stoploop(mainLoop);
+                return;
+            }
+
+            if (score >= record) record = score;
+            UpdateTaxes();
+            update("money", `Сейчас денег: ${score}`);
+        });
+
+        const phrases = {
+            taxeCount: 0, taxe: [
+                "Хм, а давай я буду забирать налог прямо из твоего кармана!",
+                "Блять, пошёл бы дом купил. Добавлю налог на бездомных.",
+                "Ты переступаешь черту. Добавляю налог на казино.",
+                "Ну что, сам напросился. Обязательный налог Марка."
+            ],
+            minCount: 0, min: [
+                "Хм, код же принадлежит мне. Погоди, подкручу кое-что...",
+                "Какого хрена шансы такие высокие. Понизить!",
+                "Ты продолжаешь срывать куш, даже с такими шансами? Секунду, проверю код...",
+                "Ты издеваешься! Ну всё, пощады шансу не будет.",
+            ],
+            payCount: 0, pay: [
+                "Хаха, теперь я буду забирать 15% ОТ ВСЕХ ТВОИХ ВЫИГРЫШЕЙ",
+                "Слушай, процент с казино оказался неплохой идеей. Попробуем... 30%",
+                "Тебе всё неймётся? Только о казино и думаешь, очнись! Может 45% налога тебе помогут.",
+                "ХВАТИТ! 60% от выигрыша - НЕВЫГОДНО! Остановись!",
+            ],
+            betCount: 0, maxBet: [
+                "Чё так много... Хм, это идея! Лимит ставки - до 1000",
+                "Ты продалжаешь наглеть, гад! Лимит ставки - да 500",
+                "Ты уже даже 1000 ставить не можешь, зачем ты продолжаешь?? Лимит - до 250",
+                "Это реально перебор. Понижаю  лимит, мне уже ничего не остаётся.",
+            ]
+        };
+
+        let taxeNum = 10000;
+        UpdateTaxes = () => {
+            if (record < taxeNum) return;
+            taxeNum += 10000;
+
+            update("eventI", "Продолжай играть, чтобы Пёрпл не забрал все деньги!");
+
+            if (score == 100000) {
+                score = 9999999;
+                remove("casino");
+                remove("eventI");
+
+                update("head", "Так и закончилась история Марка, который любил казино.");
+                update("head1", "Эпл навсегда закрыл казино.");
+                update("eventMain", "Да не может человек так сильно любить казино!");
+
+
+                stoploop(mainLoop);
+            }
+
+            switch (random(0, 3)) {
+                case 0:
+                    if (phrases.taxeCount < phrases.taxe.length) {
+                        update("eventMain", "Пёрпл: " + phrases.taxe[phrases.taxeCount]);
+                    }
+                    loop(10000, () => score -= 100 * (phrases.taxeCount + 1));
+
+                    phrases.taxeCount++;
+                    break;
+                case 1:
+                    if (phrases.minCount < phrases.min.length) {
+                        update("eventMain", "Пёрпл: " + phrases.min[phrases.minCount]);
+                    }
+                    min -= 3;
+
+                    phrases.minCount++;
+                    break;
+                case 2:
+                    if (phrases.payCount < phrases.pay.length) {
+                        update("eventMain", "Пёрпл: " + phrases.pay[phrases.payCount]);
+                    }
+                    pay -= 15;
+
+                    phrases.payCount++;
+                    break;
+                case 3:
+                    if (phrases.betCount < phrases.maxBet.length) {
+                        update("eventMain", "Пёрпл: " + phrases.maxBet[phrases.betCount]);
+                    }
+                    maxBet /= 2;
+
+                    phrases.betCount++;
+                    break;
+            }
+        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: #000000;
+            font-family: Verdana, sans-serif;
+        }
+
+        button {
+            border-style: none;
+            border-radius: 7px;
+            font-size: medium;
+            padding: 12px;
+            font-family: Verdana, sans-serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+
+        #credit {
+            font-size: small;
+        }
+
+        textarea {
+            font-family: Verdana, sans-serif;
+            padding-top: 10px;
+            outline: none;
+            resize: vertical;
+            overflow: auto;
+            border-radius: 7px;
+        }
+
+        input {
+            font-family: Verdana, sans-serif;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            border-style: none;
+            border-radius: 7px;
+        }
+    </style>
+</body>
+
+</html>
